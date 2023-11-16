@@ -1,0 +1,26 @@
+Instalar o helm
+curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+
+Identificar a versão do helm instalada
+helm version
+
+Adicionar o repositório Helm do Ingress Controller
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo update
+
+(
+Caso apache esteja ocupando porta 80
+sudo /etc/init.d/apache2 stop
+kubectl rollout restart deploy/ingress-nginx-controller
+)
+
+Instalar o Ingress Controller usando Helm
+helm install ingress-nginx ingress-nginx/ingress-nginx
+
+Após a instalação, verificar a instalação
+kubectl get pods
+kubectl get services
+kubectl get deploy
+
+Verificar no navegador se o serviço está funcionando.
+http://localhost ou http://ip_de_sua_maquina
