@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: front-end
+spec:
+  selector:
+    matchLabels:
+      app: front-end
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: front-end
+    spec:
+      containers:
+       - name: nginx
+         image: denirow/prog-redes
+         ports:
+         - containerPort: 80
